@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IntroComponent } from './intro/intro.component';
+import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.component';
 
 const routes: Routes = [
-  { path: 'home', component:IntroComponent },
-  { path:'', redirectTo: 'home', pathMatch: 'full'},
-  { path: '**', redirectTo: 'home'}
+  { path: 'intro', component: IntroComponent },
+  { path: 'home', component: ListagemFilmesComponent},
+  { path:'', redirectTo: 'intro', pathMatch: 'full'},
+  { path: '**', redirectTo: 'intro'}
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
+import { Movie } from '../models/movie.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-intro',
@@ -9,25 +11,17 @@ import { HttpService } from '../services/http.service';
 export class IntroComponent implements OnInit {
   private title = 'app-filmes';
   private button: string = "consultar";
-  private dado: any;
+  
 
-  constructor(
+  constructor (
     private httpService: HttpService
-  ) { }
+  ) {}
 
   ngOnInit() {
   }
 
-  consultar(): any {
-    return this.httpService.getLatest()
-    .subscribe( 
-      data => {
-        this.dado = data;
-        console.log(data);
-      },
-      error => { 
-         console.log (error);
-      }
-    );
+
+  proximaPagina(){
+    
   }
 }

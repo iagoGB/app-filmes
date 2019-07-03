@@ -31,6 +31,10 @@ export class HttpService {
   getTopRated(): any {
     return this.http.get<Movie[]>(this.base_movie_url+"top_rated"+this.api_key);
   }
+
+  getById( movieId: number ): any {
+    return this.http.get<Movie>(this.base_movie_url+movieId+this.api_key);
+  }
   
 
 }

@@ -8,14 +8,19 @@ import { IntroComponent } from './intro/intro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {MatButtonModule, MatCardModule, MatGridListModule } from '@angular/material';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatDialogModule } from '@angular/material';
+import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IntroComponent,
     ListagemFilmesComponent,
+    DetalhesFilmeComponent,
     
+  ],
+  entryComponents: [
+    DetalhesFilmeComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,8 @@ import {MatButtonModule, MatCardModule, MatGridListModule } from '@angular/mater
     BrowserAnimationsModule,
     MatButtonModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

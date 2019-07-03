@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpService } from '../services/http.service';
+import { MatDialog } from '@angular/material';
+import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.component';
 
 @Component({
   selector: 'app-listagem-filmes',
@@ -13,13 +15,15 @@ export class ListagemFilmesComponent implements OnInit {
   private image_size = "w500";
 
   constructor ( 
-    private httpService: HttpService 
+    private httpService: HttpService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.consultarFilmes();
   };
 
+  //Consultar filmes mais bem votados
   consultarFilmes() {
     return this.httpService.getTopRated()
     .subscribe( 
@@ -33,7 +37,22 @@ export class ListagemFilmesComponent implements OnInit {
     )
   };
 
+  //Método para carregar as imagens dos filmes
   getImage(file_path: string ): string {
     return this.httpService.getImage(file_path);
+  }
+
+  //Método para abrir pop-up com detalhes do filme
+  openDialog( movieId : number): void {
+    const dialogRef = this.dialog.open( DetalhesFilmeComponent, {
+      width: '600px',
+      data: { id: movieId }
+    });
+
+    console.log(`Id do filme selecionado: ${movieId }`);
+
+    dialogRef.afterClosed().subscribe ( action =>
+      console.log("Fechou")
+    )
   }
 }

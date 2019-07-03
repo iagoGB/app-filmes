@@ -4,7 +4,7 @@
 <div >
     <mat-grid-list cols="4" rowHeight="300px">
         <mat-grid-tile *ngFor= "let m of movies">
-            <mat-card class="larguraFixa">
+            <mat-card class="larguraFixa" (click)="openDialog(m.id);">
                 <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
                 <mat-card-title>{{m.original_title}}</mat-card-title>
                 <mat-card-subtitle>{{m.release_date}}</mat-card-subtitle>

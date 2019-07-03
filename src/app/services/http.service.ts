@@ -8,9 +8,9 @@ import { Movie } from '../models/movie.model';
 })
 export class HttpService {
 
-  base_movie_url: string = "https://api.themoviedb.org/3/movie/"//${query} 
-  base_image_url: string = "https://image.tmdb.org/t/p/";
-  api_key: string = "?api_key=7e18fad3e87379a9f2e8d60fb46ff5b0";
+  private base_movie_url: string = "https://api.themoviedb.org/3/movie/"//${query} 
+  private base_image_url: string = "https://image.tmdb.org/t/p/";
+  private api_key: string = "?api_key=7e18fad3e87379a9f2e8d60fb46ff5b0";
 
   constructor ( 
     private http: HttpClient

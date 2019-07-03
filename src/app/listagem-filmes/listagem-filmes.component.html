@@ -1,6 +1,16 @@
 <!-- Aqui vai entrar o header -->
 <h1>Listagem de Filmes</h1>
-<h2>Populares</h2>
+<mat-form-field>
+  <mat-label>Seleciona a categoria</mat-label>
+  <mat-select  [(value)]="choosed">
+      <div *ngFor="let g of genders">
+        <mat-option value="{{g.id}}">
+            {{g.name}}
+        </mat-option>
+      </div>
+  </mat-select>
+</mat-form-field>
+<h3>Valor selecionado: </h3>{{ choosed }}
 <div >
     <mat-grid-list cols="4" rowHeight="300px">
         <mat-grid-tile *ngFor= "let m of movies">

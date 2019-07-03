@@ -8,7 +8,7 @@ import { IntroComponent } from './intro/intro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {MatButtonModule, MatCardModule, MatGridListModule, MatDialogModule } from '@angular/material';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.component';
 
 @NgModule({
@@ -30,7 +30,8 @@ import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.componen
     MatButtonModule,
     MatGridListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

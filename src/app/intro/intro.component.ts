@@ -10,10 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class IntroComponent implements OnInit {
   private title = 'app-filmes';
-  private button: string = "consultar";
-  
-
-  constructor (
+  private button: string = "consultar";  
+  constructor(
     private httpService: HttpService
   ) {}
 
@@ -21,7 +19,6 @@ export class IntroComponent implements OnInit {
   }
 
 
-  proximaPagina(){
-    
+  proximaPagina(){  
   }
 }

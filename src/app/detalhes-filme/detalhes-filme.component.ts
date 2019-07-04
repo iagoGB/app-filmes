@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogData } from '../models/movie-dialog-model';
 import { Movie } from '../models/movie.model';
 import { HttpService } from '../services/http.service';
 
@@ -12,13 +11,13 @@ import { HttpService } from '../services/http.service';
 export class DetalhesFilmeComponent implements OnInit {
   private movieDetail: Movie;
 
-  constructor (
+  constructor(
     private movieService: HttpService,
     public dialogRef: MatDialogRef<DetalhesFilmeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any //criar uma interface para os dados que vão compor o dialog
+    @Inject(MAT_DIALOG_DATA) public data: any // criar uma interface para os dados que vão compor o dialog
   ) {}
 
-  onNoClick() : void {
+  onNoClick(): void {
     this.dialogRef.close();
   }
 
@@ -26,17 +25,11 @@ export class DetalhesFilmeComponent implements OnInit {
     this.getDetail(this.data.id);
   }
 
-  ngOnDestroy(){
-  }
-
-  getDetail( movieId : number ) : Movie {
+  getDetail( movieId: number ):Movie {
     return this.movieService.getById(movieId).subscribe(
       dado => {
-        this.movieDetail = dado
+        this.movieDetail = dado;
       }
     );
   }
-  
- 
-
 }

@@ -6,7 +6,7 @@ import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.compo
 const routes: Routes = [
   { path: 'intro', component: IntroComponent },
   { path: 'home', component: ListagemFilmesComponent},
-  { path:'', redirectTo: 'intro', pathMatch: 'full'},
+  { path: ' ', redirectTo: 'intro', pathMatch: 'full'},
   { path: '**', redirectTo: 'intro'}
 ];
 
@@ -14,6 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-  
-}
+export class AppRoutingModule{}

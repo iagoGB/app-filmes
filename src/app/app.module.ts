@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { IntroComponent } from './intro/intro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.component';
+import { SeletorGeneroComponent } from './seletor-genero/seletor-genero.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.componen
     IntroComponent,
     ListagemFilmesComponent,
     DetalhesFilmeComponent,
-    
+    SeletorGeneroComponent
   ],
   entryComponents: [
     DetalhesFilmeComponent

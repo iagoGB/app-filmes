@@ -25,11 +25,11 @@ export class HttpService {
   }
 
   getPopular(): any {
-    return this.http.get<Movie[]>(this.base_movie_url+"popular"+this.api_key);
+    return this.http.get<Movie[]>(this.base_movie_url + "popular"+this.api_key);
   }
 
   getTopRated(): any {
-    return this.http.get<Movie[]>(this.base_movie_url+"top_rated"+this.api_key);
+    return this.http.get<Movie[]>(this.base_movie_url + "top_rated"+this.api_key);
   }
 
   getById( movieId: number ): any {

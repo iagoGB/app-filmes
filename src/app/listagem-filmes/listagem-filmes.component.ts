@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpService } from '../services/http.service';
 import { MatDialog } from '@angular/material';
 import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.component';
-import { GeneroService } from '../services/genero/genero.service';
-import { Gender } from '../models/gender.model';
 
 @Component({
   selector: 'app-listagem-filmes',
@@ -13,55 +11,49 @@ import { Gender } from '../models/gender.model';
 })
 export class ListagemFilmesComponent implements OnInit {
   private movies: Movie[];
-  private genders: Gender[];
-  private base_image_url: string = "https://image.tmdb.org/t/p/"
-  private image_size = "w500";
+  private base_image_url:string = "https://image.tmdb.org/t/p/";
+  private image_size: string = "w500";
 
-  constructor ( 
+  constructor( 
     private httpService: HttpService,
-    private generoService: GeneroService,
     private dialog: MatDialog
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
     this.consultarFilmes();
-    this.getGenders();
-  };
+  }
 
-  //Consultar filmes mais bem votados
-  consultarFilmes() {
+  // Consultar filmes mais bem votados
+  consultarFilmes(){
     return this.httpService.getTopRated()
     .subscribe( 
-      dados => {
+      dados =>{
         this.movies = dados.results;
-        console.log("Variável movie:"+ this.movies);
+        console.log("Variável movie:" + this.movies);
       },
-      error => { 
+      error =>{ 
          console.log (error);
       }
-    )
-  };
-
-  //Método para carregar as imagens dos filmes
+    );
+  }
+  // Método para carregar as imagens dos filmes
   getImage(file_path: string ): string {
     return this.httpService.getImage(file_path);
   }
-
-  getGenders() : void {
-    this.generoService.loadGenders().subscribe ( dados => this.genders = dados.genres );
-  }
-
-  //Método para abrir pop-up com detalhes do filme
-  openDialog( movieId : number): void {
+  // Método para abrir pop-up com detalhes do filme
+  openDialog(movieId:number): void {
     const dialogRef = this.dialog.open( DetalhesFilmeComponent, {
       width: '600px',
       data: { id: movieId }
     });
-
-    console.log(`Id do filme selecionado: ${movieId }`);
-
+    console.log(`Id do filme selecionado: ${movieId}`);
     dialogRef.afterClosed().subscribe ( action =>
       console.log("Fechou")
     )
+  }
+
+  change(evento){
+    this.movies = evento;
+    console.log(`Mudou por gênero ${ this.movies }`);
   }
 }

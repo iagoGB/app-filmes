@@ -29,6 +29,9 @@ export class DetalhesFilmeComponent implements OnInit {
     return this.movieService.getById(movieId).subscribe(
       dado => {
         this.movieDetail = dado;
+      },
+      erro =>{
+        console.log(erro);
       }
     );
   }

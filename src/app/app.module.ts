@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { DetalhesFilmeComponent } from './detalhes-filme/detalhes-filme.component';
 import { SeletorGeneroComponent } from './seletor-genero/seletor-genero.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SeletorGeneroComponent } from './seletor-genero/seletor-genero.componen
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LayoutModule,
     MatButtonModule,
     MatGridListModule,
     MatCardModule,

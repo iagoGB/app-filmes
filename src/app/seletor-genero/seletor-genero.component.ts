@@ -12,6 +12,7 @@ export class SeletorGeneroComponent implements OnInit {
   private genres: Genre[];
   private movies: Movie[];
   private choosed: number;
+  private page: number;
   @Output() private changeGener = new EventEmitter();
 
   constructor(
@@ -26,7 +27,7 @@ export class SeletorGeneroComponent implements OnInit {
   // Mudar para o genero escolhido
   changeChoosed(value:number):void{
     this.choosed = value; 
-    this.getGenreById(this.choosed);
+    this.getGenreById(this.choosed, this.page);
     
   }
   // Notifica a mudança para o componente pai 
@@ -35,8 +36,8 @@ export class SeletorGeneroComponent implements OnInit {
     console.log(` Novo array de filmes: ${ this.movies } \n notifychange(): Escolhido: ${this.choosed}`);
   }
   // Método para solicitar consulta dos filmes por gênero
-  getGenreById(value:number):void{
-    this.generoService.loadGenreById(value).subscribe( 
+  getGenreById(value:number,page:number):void{
+    this.generoService.loadGenreById(value,page).subscribe( 
       dados =>{
         this.movies = dados.results;
         this.notifyChange();

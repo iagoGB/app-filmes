@@ -4,6 +4,7 @@ import { HttpService } from '../services/http.service';
 import { MatDialog } from '@angular/material';
 import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-listagem-filmes',
@@ -15,16 +16,21 @@ export class ListagemFilmesComponent implements OnInit {
   private base_image_url:string = "https://image.tmdb.org/t/p/";
   private image_size: string = "w500";
   private larguraAtual = 4;
+  private p:number = 1;
+  private totalPages: number;
+  private totalResults: number;
 
   constructor( 
     private httpService:HttpService,
     private dialog:MatDialog,
-    private breakpointObserver:BreakpointObserver
+    private breakpointObserver:BreakpointObserver,
+    private liveAnnouncer:LiveAnnouncer
   ) { }
 
   ngOnInit(){
     this.consultarFilmes();
     this.watchScreen();
+    this.liveAnnouncer.announce("Escolha o filme desejado!");
   }
   // Método para verificar tamanho da tela
   watchScreen():void{
@@ -46,12 +52,22 @@ export class ListagemFilmesComponent implements OnInit {
     .subscribe( 
       dados =>{
         this.movies = dados.results;
+        this.totalPages = dados.total_pages;
+        this.totalResults = dados.total_results;
         console.log("Variável movie:" + this.movies);
       },
       error =>{ 
         console.log (error);
       }
     );
+  }
+
+  nextPage(): void {
+    this.httpService.nextPage(this.p).subscribe(
+      dados => {
+        this.movies = dados.results;
+      }
+    )
   }
   // Método para carregar as imagens dos filmes
   getImage(file_path: string ): string {

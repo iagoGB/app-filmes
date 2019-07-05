@@ -35,6 +35,10 @@ export class HttpService {
   getById( movieId: number ): any {
     return this.http.get<Movie>(this.base_movie_url+movieId+this.api_key);
   }
+
+  nextPage(p): any {
+    return this.http.get<Movie>(`https://api.themoviedb.org/3/discover/movie` + this.api_key + `&page=${p}` )
+  }
   
 
 }

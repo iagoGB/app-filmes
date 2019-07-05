@@ -1,16 +1,28 @@
 <!-- Aqui vai entrar o header -->
-<h1>Listagem de Filmes</h1>
-<app-seletor-genero (changeGener)="change($event)"></app-seletor-genero>
-<div >
-    <mat-grid-list [cols]="larguraAtual" rowHeight="300px">
-        <mat-grid-tile *ngFor= "let m of movies">
-            <mat-card class="larguraFixa" (click)="openDialog(m.id);">
-                <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
-                <mat-card-title>{{m.original_title}}</mat-card-title>
-                <mat-card-subtitle>{{m.release_date}}</mat-card-subtitle>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+<div [class.alternative]="otherTheme">
+    <app-header></app-header>
+    <app-seletor-genero (changeGener)="change($event)"></app-seletor-genero>
+    <div>
+        <mat-grid-list [cols]="larguraAtual" rowHeight="300px">
+            <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : p, totalItems: totalResults }" >
+                <mat-card class="larguraFixa" (click)="openDialog(m.id);">
+                    <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
+                    <mat-card-title>{{m.original_title}}</mat-card-title>
+                    <mat-card-subtitle>{{m.release_date}}</mat-card-subtitle>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <pagination-controls class="align"
+            (pageChange)="p = $event; nextPage();"
+            responsive="true"
+            previousLabel="Anterior"
+            nextLabel="Próximo"
+            screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page"
+            screenReaderCurrentLabel="Você esta na página {{ currentPage }}"
+        >
+        </pagination-controls>
+    </div>
 </div>
 
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Movie } from '../models/movie.model';
+import { Movie } from '../../models/movie.model';
+import { MovieResult } from 'src/app/models/result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +33,15 @@ export class HttpService {
     return this.http.get<Movie[]>(this.base_movie_url + "top_rated"+this.api_key);
   }
 
-  getById( movieId: number ): any {
-    return this.http.get<Movie>(this.base_movie_url+movieId+this.api_key);
+  getById( movieId: number ): any{
+    return this.http.get<MovieResult>(this.base_movie_url+movieId+this.api_key);
   }
 
-  nextPage(p): any {
-    return this.http.get<Movie>(`https://api.themoviedb.org/3/discover/movie` + this.api_key + `&page=${p}` )
+  nextPage(p:number,g:number): any {
+    console.log("Função do service paginacao: "+ p, g);
+    console.log(`https://api.themoviedb.org/3/discover/movie${this.api_key}&with_genres=${g}&page=${p}`);
+
+    return this.http.get<Movie>(`https://api.themoviedb.org/3/discover/movie${this.api_key}&with_genres=${g}&page=${p}`)
   }
   
 

@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Movie } from '../models/movie.model';
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../services/filme/http.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detalhes-filme',
@@ -10,6 +11,7 @@ import { HttpService } from '../services/http.service';
 })
 export class DetalhesFilmeComponent implements OnInit {
   private movieDetail: Movie;
+  
 
   constructor(
     private movieService: HttpService,

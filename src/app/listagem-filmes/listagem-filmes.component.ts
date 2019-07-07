@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../models/movie.model';
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../services/filme/http.service';
 import { MatDialog } from '@angular/material';
 import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { GenreResult } from '../models/result.model';
 
 @Component({
   selector: 'app-listagem-filmes',
@@ -13,12 +14,18 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 })
 export class ListagemFilmesComponent implements OnInit {
   private movies: Movie[];
+  private genreResult: GenreResult = {
+    results : null,
+    total_pages : null,
+    total_results : null,
+    page : null
+  }
   private base_image_url:string = "https://image.tmdb.org/t/p/";
   private image_size: string = "w500";
   private larguraAtual = 4;
-  private p:number = 1;
-  private totalPages: number;
-  private totalResults: number;
+  private page:number = 1;
+  private generChoosed: number;
+  
 
   constructor( 
     private httpService:HttpService,
@@ -31,6 +38,10 @@ export class ListagemFilmesComponent implements OnInit {
     this.consultarFilmes();
     this.watchScreen();
     this.liveAnnouncer.announce("Escolha o filme desejado!");
+  }
+
+  ngOnDestroy(){
+    console.log("Destruiu");
   }
   // Método para verificar tamanho da tela
   watchScreen():void{
@@ -46,28 +57,40 @@ export class ListagemFilmesComponent implements OnInit {
       }
     });
   }
-  // Consultar filmes mais bem votados
+  // Consultar filmes mais bem votados - Carregamento inicial
   consultarFilmes(){
-     return this.httpService.getTopRated()
+    return this.httpService.getTopRated()
     .subscribe( 
       dados =>{
+        this.genreResult.total_pages = dados.total_pages;
+        this.genreResult.total_results = dados.total_results;
+        this.genreResult.page = dados.page;
         this.movies = dados.results;
-        this.totalPages = dados.total_pages;
-        this.totalResults = dados.total_results;
         console.log("Variável movie:" + this.movies);
       },
-      error =>{ 
-        console.log (error);
+      erro =>
+      { 
+        console.log ("ERRO:"+erro);
       }
     );
   }
-
-  nextPage(): void {
-    this.httpService.nextPage(this.p).subscribe(
-      dados => {
+  // Método para avançar, retroceder ou atualizar para pagina desejada
+  nextPage() {
+    this.httpService.nextPage(this.page,this.generChoosed)
+    .subscribe(
+      dados => 
+      {
+        this.genreResult.total_pages= dados.total_pages;
+        this.genreResult.total_results = dados.total_results;
+        this.genreResult.page = dados.page;
         this.movies = dados.results;
+        console.log(this.movies);
+      }, 
+      erro =>
+      {
+        console.log(erro);
       }
-    )
+    );
   }
   // Método para carregar as imagens dos filmes
   getImage(file_path: string ): string {
@@ -83,9 +106,11 @@ export class ListagemFilmesComponent implements OnInit {
       console.log("Fechou")
     )
   }
-  // Método para mudar os filmes que serão listados, recebendo o array de novos filmes a serem listados por genero
+  // Método para mudar os filmes que serão listados, recebendo o id de genero escolhido no seletor-genero componente
   change(evento){
-    this.movies = evento;
-    console.log(`Mudou por gênero ${ this.movies }`);
+    this.genreResult = evento.genreResult;
+    this.generChoosed = evento.choosed;
+    this.nextPage();
+    console.log(`Chegou novos genero: id: ${this.generChoosed} dados: ${ this.genreResult } `);
   }
 }

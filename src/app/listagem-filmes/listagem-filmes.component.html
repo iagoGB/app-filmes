@@ -1,10 +1,13 @@
 <!-- Aqui vai entrar o header -->
 <div [class.alternative]="otherTheme">
     <app-header></app-header>
-    <app-seletor-genero (changeGener)="change($event)"></app-seletor-genero>
-    <div>
+    <app-seletor-genero 
+        (changeGener)="change($event)"
+    >
+    </app-seletor-genero>
+    <div *ngIf="movies">
         <mat-grid-list [cols]="larguraAtual" rowHeight="300px">
-            <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : p, totalItems: totalResults }" >
+            <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : genreResult.page, totalItems: 1000 }" >
                 <mat-card class="larguraFixa" (click)="openDialog(m.id);">
                     <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
                     <mat-card-title>{{m.original_title}}</mat-card-title>
@@ -12,16 +15,18 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
-        <pagination-controls class="align"
-            (pageChange)="p = $event; nextPage();"
-            responsive="true"
-            previousLabel="Anterior"
-            nextLabel="Próximo"
-            screenReaderPaginationLabel="Pagination"
-            screenReaderPageLabel="page"
-            screenReaderCurrentLabel="Você esta na página {{ currentPage }}"
-        >
-        </pagination-controls>
+        <div *ngIf="genreResult.total_pages">
+            <pagination-controls class="align"
+                (pageChange)="page = $event; nextPage();"
+                responsive="true"
+                previousLabel="Anterior"
+                nextLabel="Próximo"
+                screenReaderPaginationLabel="Paginação"
+                screenReaderPageLabel="page"
+                screenReaderCurrentLabel="Você esta na página {{ currentPage }}"
+            >
+            </pagination-controls>
+        </div>
     </div>
 </div>
 

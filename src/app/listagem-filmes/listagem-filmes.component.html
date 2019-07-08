@@ -7,10 +7,12 @@
     >
     </app-header>
     <!-- COMPONENTES DE INTERAÇÃO -->
-    <div fxLayout="row" fxLayoutAlign="space-evenly">
-        <seletor-genero (changeGener)="changeGener($event);"></seletor-genero>
-        <buscar-filme (changeFind)="changeFind($event)"></buscar-filme>
+    <div mat-content fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-evenly">
+        <div fxLayoutAlign="center"><buscar-filme (changeFind)="changeFind($event)"></buscar-filme></div>
+        
+        <div fxLayoutAlign="center"><seletor-genero (changeGener)="changeGener($event);"></seletor-genero></div>
     </div>
+
     <!-- LISTAGEM DOS FILMES -->
     <div *ngIf="movies; else loading">
         <mat-grid-list [cols]="larguraAtual" rowHeight="300px" color="warn" fxLayoutalign="center">
@@ -23,7 +25,7 @@
             </mat-grid-tile>
         </mat-grid-list>
         <!-- PAGINAÇÃO -->
-        <div *ngIf="genreResult.total_pages" fxLayout="row" fxLayoutAlign="center center">
+        <div *ngIf="genreResult.total_pages" fxLayout="row" fxLayoutAlign="center">
             <pagination-controls class="seletor" [class.change-font]="changeFont"
                 (pageChange)="page = $event; nextPage();"
                 responsive="true"

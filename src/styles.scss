@@ -10,11 +10,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Tema com alto contraste
 .high-contrast-theme {
   color: $light-primary-text;
-  h1 {
-    color: white;
-    font-weight: 500;
-    box-shadow: none;
-  }
   background-color: black;
   .seletor {
     background-color: #FFFF00;
@@ -58,8 +53,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   }
 }
-
-
 // Configurações ao mudar para alto contraste no dialog
 .dialog-contrast {
   .mat-dialog-container{
@@ -72,12 +65,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 20px;
     border: 2px solid #FFFF00;
     border-radius: 10px;
-  }
-  .mat-select-content{
-    .mat-select-option {
-      background-color: pink !important; 
-    }
-  }   
+  } 
 }
 
     

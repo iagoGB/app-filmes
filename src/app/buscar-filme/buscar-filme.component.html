@@ -1,0 +1,7 @@
+<mat-form-field>
+<input [(ngModel)]="keyword"  (keydown.enter)="getByKeyword(keyword);"matInput  type="text" placeholder="Digite um filme, palavra chave" aria-label="Caixa de texto, digite um filme ou palavra chave"/>
+</mat-form-field>
+<span>{{ ' ' }}</span>
+<button mat-flat-button color="primary" (click)="getByKeyword(keyword);" >
+    <i  class="material-icons">search</i>
+</button>

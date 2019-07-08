@@ -1,12 +1,12 @@
 <!-- Aqui vai entrar o header -->
-<div [class.alternative]="otherTheme">
-    <app-header></app-header>
-    <app-seletor-genero 
-        (changeGener)="change($event)"
-    >
-    </app-seletor-genero>
-    <div *ngIf="movies">
-        <mat-grid-list [cols]="larguraAtual" rowHeight="300px">
+<div [class.high-contrast-theme]="highContrastTheme" color="accent">
+    <app-header (changeTheme)="changeTheme();"></app-header>
+    <div fxLayout="row" fxLayoutAlign="space-evenly">
+        <seletor-genero (changeGener)="changeGener($event);"></seletor-genero>
+        <buscar-filme (changeFind)="changeFind($event)"></buscar-filme>
+    </div>
+    <div *ngIf="movies; else loading">
+        <mat-grid-list [cols]="larguraAtual" rowHeight="300px" color="warn">
             <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : genreResult.page, totalItems: 1000 }" >
                 <mat-card class="larguraFixa" (click)="openDialog(m.id);">
                     <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
@@ -15,8 +15,8 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
-        <div *ngIf="genreResult.total_pages">
-            <pagination-controls class="align"
+        <div *ngIf="genreResult.total_pages" fxLayout="row" fxLayoutAlign="center center">
+            <pagination-controls class="seletor"
                 (pageChange)="page = $event; nextPage();"
                 responsive="true"
                 previousLabel="Anterior"
@@ -28,6 +28,9 @@
             </pagination-controls>
         </div>
     </div>
+    <ng-template #loading>
+        <h5>Carregando lista de filmes...</h5>
+    </ng-template>
 </div>
 
 

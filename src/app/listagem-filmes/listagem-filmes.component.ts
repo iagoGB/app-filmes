@@ -24,7 +24,8 @@ export class ListagemFilmesComponent implements OnInit {
   private image_size: string = "w500";
   private larguraAtual = 4;
   private page:number = 1;
-  private generChoosed: number;
+  private generChoosed: number = 16;
+  private highContrastTheme: boolean = false;
   
 
   constructor( 
@@ -41,7 +42,6 @@ export class ListagemFilmesComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    console.log("Destruiu");
   }
   // Método para verificar tamanho da tela
   watchScreen():void{
@@ -59,7 +59,7 @@ export class ListagemFilmesComponent implements OnInit {
   }
   // Consultar filmes mais bem votados - Carregamento inicial
   consultarFilmes(){
-    return this.httpService.getTopRated()
+    this.httpService.getTopRated()
     .subscribe( 
       dados =>{
         this.genreResult.total_pages = dados.total_pages;
@@ -107,10 +107,20 @@ export class ListagemFilmesComponent implements OnInit {
     )
   }
   // Método para mudar os filmes que serão listados, recebendo o id de genero escolhido no seletor-genero componente
-  change(evento){
+  changeGener(evento){
     this.genreResult = evento.genreResult;
     this.generChoosed = evento.choosed;
     this.nextPage();
     console.log(`Chegou novos genero: id: ${this.generChoosed} dados: ${ this.genreResult } `);
+  }
+
+  changeFind(movies){
+    this.movies = movies;
+    this.genreResult.total_pages = null;
+  }
+
+  changeTheme():void{
+    this.highContrastTheme = !this.highContrastTheme;
+    console.log("Executou a mudança de tema" + this.highContrastTheme);
   }
 }

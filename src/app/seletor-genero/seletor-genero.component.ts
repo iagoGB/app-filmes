@@ -5,7 +5,7 @@ import { Movie } from '../models/movie.model';
 import { GenreResult } from '../models/result.model';
 
 @Component({
-  selector: 'app-seletor-genero',
+  selector: 'seletor-genero',
   templateUrl: './seletor-genero.component.html',
   styleUrls: ['./seletor-genero.component.scss']
 })

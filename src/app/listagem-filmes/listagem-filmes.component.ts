@@ -6,6 +6,7 @@ import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.compone
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { GenreResult } from '../models/result.model';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-listagem-filmes',
@@ -13,6 +14,7 @@ import { GenreResult } from '../models/result.model';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit {
+  public changeFont:boolean = false;
   private movies: Movie[];
   private genreResult: GenreResult = {
     results : null,
@@ -26,6 +28,7 @@ export class ListagemFilmesComponent implements OnInit {
   private page:number = 1;
   private generChoosed: number = 16;
   private highContrastTheme: boolean = false;
+  
   
 
   constructor( 
@@ -47,13 +50,11 @@ export class ListagemFilmesComponent implements OnInit {
   watchScreen():void{
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium
     ]).subscribe(result => {
       if (result.matches) {
-        this.larguraAtual = 2;
+        this.larguraAtual = 1;
       } else {
-        this.larguraAtual = 4;
+        this.larguraAtual = 3;
       }
     });
   }
@@ -98,9 +99,14 @@ export class ListagemFilmesComponent implements OnInit {
   }
   // Método para abrir pop-up com detalhes do filme
   openDialog(movieId:number): void {
+    let classe: string = "";
+    if (this.highContrastTheme){
+      classe = 'dialog-contrast';
+    }
     const dialogRef = this.dialog.open( DetalhesFilmeComponent, {
       width: '600px',
-      data: { id: movieId }
+      data: { id: movieId },
+      panelClass: classe
     });
     dialogRef.afterClosed().subscribe ( action =>
       console.log("Fechou")
@@ -122,5 +128,9 @@ export class ListagemFilmesComponent implements OnInit {
   changeTheme():void{
     this.highContrastTheme = !this.highContrastTheme;
     console.log("Executou a mudança de tema" + this.highContrastTheme);
+  }
+
+  changeFontSize(value:boolean):void{
+    this.changeFont = value;
   }
 }

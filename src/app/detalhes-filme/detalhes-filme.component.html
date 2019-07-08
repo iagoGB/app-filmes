@@ -1,14 +1,21 @@
-<div *ngIf="movieDetail">
+<div *ngIf="movieDetail" color="accent">
     <h1 mat-dialog-title>{{movieDetail.title}}</h1>
-    <div mat-dialog-content>
+    <div mat-dialog-content class="black">
         <div mat-grid-list>
             <img src="https://image.tmdb.org/t/p/w300/{{movieDetail.poster_path}}" alt="Pôster do filme {{movieDetail.title}}"/>
+            <div>
+                <span><b>Media:</b></span> {{ movieDetail.vote_average }}
+                {{ '  ' }}
+                <span><b>Popularidade:</b></span> {{ movieDetail.popularity }}
+            </div>
+            <h3>Sinopse</h3>
             <p>{{ movieDetail.overview }}</p>
             <h3>Ano de lançamento:</h3>{{movieDetail.release_date}}
             <h3>Tags:</h3>
             <div *ngFor = "let g of movieDetail.genres">
                 <span>{{g.name}}</span>
             </div>  
+            
         </div>
     </div>
 </div>

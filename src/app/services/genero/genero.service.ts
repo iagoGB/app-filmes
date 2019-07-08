@@ -13,7 +13,7 @@ export class GeneroService {
   ) { }
 
   loadGenreById(genreId:number):any{
-    return this.http.get(`https://api.themoviedb.org/3/discover/movie?api_key=7e18fad3e87379a9f2e8d60fb46ff5b0&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genreId}`);
+    return this.http.get(`https://api.themoviedb.org/3/discover/movie?api_key=7e18fad3e87379a9f2e8d60fb46ff5b0&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genreId}&language=pt-BR`);
   }
 
   loadGenres(): any {

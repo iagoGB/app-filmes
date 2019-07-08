@@ -10,10 +10,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Tema com alto contraste
 .high-contrast-theme {
   color: $light-primary-text;
+  h1 {
+    color: white;
+    font-weight: 500;
+    box-shadow: none;
+  }
   background-color: black;
   .seletor {
-    background-color: yellow;
-    color: white;
+    background-color: #FFFF00;
+    border-radius: 10px;
+    
+  }
+  mat-card{
+    border: 2px solid #FFFF00;
   }
   $dark-primary: mat-palette($mat-yellow);
   $dark-accent: mat-palette($mat-amber, A400, A100, A700);
@@ -22,5 +31,53 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   @include angular-material-theme($dark-theme);
 }
 
+.mat-h5{
+  font-size: 1.2em;
+}
+// Centralizar conteúdo no dialog
+.mat-dialog-container {
+  text-align: center;
+  border-radius: 10px;
+}
+
+// Configurações ao mudar tamanho da fonte
+.change-font{
+  font-size: 1.8em;
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  .seletor {
+    font-size: 1.6em;
+    color: white;
+  }
+
+  .mat-dialog-container{
+    font-size: 2em;
+    
+  }
+}
+
+
+// Configurações ao mudar para alto contraste no dialog
+.dialog-contrast {
+  .mat-dialog-container{
+    background: black;
+    color: white;
+    border: 2px solid #FFFF00;
+  }
+  .mat-dialog-title{
+    margin: none;
+    padding: 20px;
+    border: 2px solid #FFFF00;
+    border-radius: 10px;
+  }
+  .mat-select-content{
+    .mat-select-option {
+      background-color: pink !important; 
+    }
+  }   
+}
 
     

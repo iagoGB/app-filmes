@@ -27,8 +27,8 @@ export class DetalhesFilmeComponent implements OnInit {
     this.getDetail(this.data.id);
   }
 
-  getDetail( movieId: number ):Movie {
-    return this.movieService.getById(movieId).subscribe(
+  getDetail( movieId: number ): void {
+    this.movieService.getById(movieId).subscribe(
       dado => {
         this.movieDetail = dado;
       },

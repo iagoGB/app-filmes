@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/filme/http.service';
 import { Movie } from '../models/movie.model';
-import { Observable } from 'rxjs';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-intro',
@@ -12,10 +12,11 @@ export class IntroComponent implements OnInit {
   private title = 'app-filmes';
   private button: string = "consultar";  
   constructor(
-    private httpService: HttpService
+    private liveAnnouncer:LiveAnnouncer
   ) {}
 
   ngOnInit() {
+    this.liveAnnouncer.announce("Bem vindo ao Aplicativo de filmes!");
   }
 
 

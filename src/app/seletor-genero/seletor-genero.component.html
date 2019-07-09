@@ -2,7 +2,7 @@
     <mat-label>Seleciona a categoria</mat-label>
     <mat-select [(value)]="choosed" (valueChange)="changeChoosed($event)" panelClass="teste"  aria-placeholder="Procurar por...">
         <div *ngFor="let g of genres">
-          <mat-option  value="{{g.id}}">
+          <mat-option  value="{{ g.id }}">
               {{g.name}}
           </mat-option>
         </div>

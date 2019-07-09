@@ -9,7 +9,6 @@
     <!-- COMPONENTES DE INTERAÇÃO -->
     <div mat-content fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-evenly">
         <div fxLayoutAlign="center"><buscar-filme (changeFind)="changeFind($event)"></buscar-filme></div>
-        
         <div fxLayoutAlign="center"><seletor-genero (changeGener)="changeGener($event);"></seletor-genero></div>
     </div>
 
@@ -32,7 +31,7 @@
                 previousLabel="Anterior"
                 nextLabel="Próximo"
                 screenReaderPaginationLabel="Paginação"
-                screenReaderPageLabel="page"
+                screenReaderPageLabel="pagina"
                 screenReaderCurrentLabel="Você esta na página {{ currentPage }}"
             >
             </pagination-controls>

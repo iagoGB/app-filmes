@@ -9,7 +9,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./intro.component.scss']
 })
 export class IntroComponent implements OnInit {
-  private title = 'app-filmes';
+  private title = 'aplicativo de filmes';
   private button: string = "consultar";  
   constructor(
     private liveAnnouncer:LiveAnnouncer

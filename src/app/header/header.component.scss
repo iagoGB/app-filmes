@@ -6,3 +6,19 @@ button{
     margin-right: 3px;
 }
 
+mat-menu {
+    .material-icons{
+        margin-top: 25px;
+    }
+}
+
+mat-toolbar{
+    z-index: 2;
+    margin-top: 0px;
+}
+
+.fixed {
+    position: fixed;
+    left: 80%;
+    z-index: 2;
+}

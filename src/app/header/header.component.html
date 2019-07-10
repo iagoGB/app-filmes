@@ -1,5 +1,6 @@
 <mat-toolbar color="primary" class="toolbar-background" [class.change-font]="changeFont">
     <span>Listagem de Filmes</span>
+    <span class="space"></span>
     <div fxShow="true" fxHide.xs>
       <!-- Os botões desaparecerão em tamanho menor de tela -->
       <button mat-raised-button (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste">
@@ -13,19 +14,22 @@
       </button>
     </div>
     <!--Botão aparecerá ao atingir tamanho menor de tela -->
-    <button mat-mini-fab [matMenuTriggerFor]="menu" fxShow="true" fxHide.gt-xs>
-      <i class="material-icons">menu</i>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" class="fixed" fxShow="true" fxHide.gt-xs>
+      <i class="material-icons">more_vert</i>
     </button>
     <!-- Menu responsivo -->
-    <mat-menu #menu="matMenu" color="primary">
+    <mat-menu #menu="matMenu" overlapTrigger="true" color="primary">
       <button mat-menu-item (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste">
         <i class="material-icons">brightness_4</i>
+        Mudar constraste
       </button>
       <button mat-menu-item (click)="notifyFont(true);" aria-label="Aumentar fonte">
         <i class="material-icons">text_fields</i>
+        Aumentar Fonte
       </button>
       <button mat-menu-item (click)="notifyFont(false);" aria-label="Reduzir fonte">
         <i class="material-icons">format_size</i>
+        Reduzir Fonte
       </button>
     </mat-menu>
 </mat-toolbar>

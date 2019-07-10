@@ -1,7 +1,7 @@
 <!-- Aqui vai entrar o header -->
 <div [class.high-contrast-theme]="highContrastTheme" color="accent">
     <!-- CABEÇALHO -->
-    <app-header
+    <app-header 
         (sendChangeTheme)="changeTheme();"
         (sendChangeFont)="changeFontSize($event);"
     >
@@ -31,7 +31,7 @@
                 previousLabel="Anterior"
                 nextLabel="Próximo"
                 screenReaderPaginationLabel="Paginação"
-                screenReaderPageLabel="pagina"
+                screenReaderPageLabel="página"
                 screenReaderCurrentLabel="Você esta na página {{ currentPage }}"
             >
             </pagination-controls>

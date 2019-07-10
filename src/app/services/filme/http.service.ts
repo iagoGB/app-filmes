@@ -33,7 +33,7 @@ export class HttpService {
     return this.http.get<Movie[]>(this.base_movie_url + "top_rated"+this.api_key);
   }
 
-  getById( movieId: number ): any {
+  getById( movieId: number ): Observable<any> {
     return this.http.get<MovieResult>(this.base_movie_url+movieId+this.api_key);
   }
 

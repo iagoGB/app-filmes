@@ -13,7 +13,7 @@ export class HttpService {
   private base_image_url: string = "https://image.tmdb.org/t/p/";
   private api_key: string = "?api_key=7e18fad3e87379a9f2e8d60fb46ff5b0";
 
-  constructor ( 
+  constructor( 
     private http: HttpClient
   ) {}
 
@@ -21,15 +21,7 @@ export class HttpService {
     return this.http.get(this.base_image_url+"w185/"+file_path);
   }
 
-  getLatest(): any {
-    return this.http.get<any>(this.base_movie_url+"latest"+this.api_key);
-  }
-
-  getPopular(): any {
-    return this.http.get<Movie[]>(this.base_movie_url + "popular"+this.api_key);
-  }
-
-  getTopRated(): any {
+  getTopRated(): Observable<any> {
     return this.http.get<Movie[]>(this.base_movie_url + "top_rated"+this.api_key);
   }
 
@@ -41,10 +33,7 @@ export class HttpService {
     return this.http.get(`https://api.themoviedb.org/3/search/movie${this.api_key}&query=${query}&language=pt-BR`);
   }
 
-  nextPage(p:number,g:number): any {
-    console.log("Função do service paginacao: "+ p, g);
-    console.log(`https://api.themoviedb.org/3/discover/movie${this.api_key}&with_genres=${g}&page=${p}&language=pt-BR`);
-
+  nextPage(p:number,g:number): Observable<any> {
     return this.http.get<Movie>(`https://api.themoviedb.org/3/discover/movie${this.api_key}&with_genres=${g}&page=${p}&language=pt-BR`);
   }
   

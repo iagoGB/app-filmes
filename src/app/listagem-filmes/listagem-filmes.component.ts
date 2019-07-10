@@ -14,7 +14,13 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit {
+  private base_image_url:string = "https://image.tmdb.org/t/p/";
+  private image_size: string = "w500";
   public changeFont:boolean = false;
+  private highContrastTheme: boolean = false;
+  private larguraAtual:number = 4;
+  private page:number = 1;
+  private generChoosed: number = 16;
   private movies: Movie[];
   private genreResult: GenreResult = {
     results : null,
@@ -22,15 +28,7 @@ export class ListagemFilmesComponent implements OnInit {
     total_results : null,
     page : null
   }
-  private base_image_url:string = "https://image.tmdb.org/t/p/";
-  private image_size: string = "w500";
-  private larguraAtual = 4;
-  private page:number = 1;
-  private generChoosed: number = 16;
-  private highContrastTheme: boolean = false;
   
-  
-
   constructor( 
     private httpService:HttpService,
     private dialog:MatDialog,
@@ -46,6 +44,7 @@ export class ListagemFilmesComponent implements OnInit {
 
   ngOnDestroy(){
   }
+
   // Método para verificar tamanho da tela
   watchScreen():void{
     this.breakpointObserver.observe([
@@ -53,8 +52,10 @@ export class ListagemFilmesComponent implements OnInit {
     ]).subscribe(result => {
       if (result.matches) {
         this.larguraAtual = 1;
+        this.image_size ="w185";
       } else {
-        this.larguraAtual = 3;
+        this.larguraAtual = 2;
+        this.image_size = "w300";
       }
     });
   }
@@ -105,7 +106,7 @@ export class ListagemFilmesComponent implements OnInit {
     }
     const dialogRef = this.dialog.open( DetalhesFilmeComponent, {
       width: '600px',
-      data: { id: movieId },
+      data: { id: movieId, size: this.image_size },
       panelClass: classe
     });
     dialogRef.afterClosed().subscribe ( action =>
@@ -113,14 +114,14 @@ export class ListagemFilmesComponent implements OnInit {
     )
   }
   // Método para mudar os filmes que serão listados, recebendo o id de genero escolhido no seletor-genero componente
-  changeGener(evento){
+  changeGener(evento):void{
     this.genreResult = evento.genreResult;
     this.generChoosed = evento.choosed;
     this.nextPage();
     console.log(`Chegou novos genero: id: ${this.generChoosed} dados: ${ this.genreResult } `);
   }
 
-  changeFind(movies){
+  changeFind(movies):void{
     this.movies = movies;
     this.genreResult.total_pages = null;
   }

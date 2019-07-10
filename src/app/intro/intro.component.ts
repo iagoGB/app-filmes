@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services/filme/http.service';
-import { Movie } from '../models/movie.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { delay } from 'q';
+import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-intro',
@@ -12,14 +15,21 @@ export class IntroComponent implements OnInit {
   private title = 'aplicativo de filmes';
   private button: string = "consultar";  
   constructor(
-    private liveAnnouncer:LiveAnnouncer
+    private liveAnnouncer:LiveAnnouncer,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.liveAnnouncer.announce("Bem vindo ao Aplicativo de filmes!");
+    setTimeout(()=>{ this.nextPage()},4000);
+    
   }
 
+  ngOnDestroy(){
+    
+  }
 
-  proximaPagina(){  
+  nextPage(){  
+    this.router.navigate(['/home']);
   }
 }

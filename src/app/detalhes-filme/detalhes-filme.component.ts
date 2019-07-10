@@ -11,12 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class DetalhesFilmeComponent implements OnInit {
   private movieDetail: Movie;
+  private image_size: string;
   
-
   constructor(
     private movieService: HttpService,
     public dialogRef: MatDialogRef<DetalhesFilmeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any // criar uma interface para os dados que vão compor o dialog
+    @Inject(MAT_DIALOG_DATA) public data: any // cria uma variavel que traz os dados que vão compor o dialog; Componente que o chama, informa os dados. (Exemplo: id do filme, tamanho da imagem para renderizar)
   ) {}
 
   onNoClick(): void {
@@ -25,6 +25,7 @@ export class DetalhesFilmeComponent implements OnInit {
 
   ngOnInit() {
     this.getDetail(this.data.id);
+    this.image_size = this.data.size;
   }
 
   getDetail( movieId: number ): void {

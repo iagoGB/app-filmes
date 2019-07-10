@@ -37,26 +37,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Configurações ao mudar tamanho da fonte
 .change-font{
-  font-size: 1.8em;
+
+  .ngx-pagination {
+    font-size: 20px;
+  }
+  .seletor{
+    font-size: 0.8em;
+  }
+
+  font-size: 1.7em;
 
   h1 {
     font-size: 1.4em;
   }
-
-  .seletor {
-    font-size: 0.8em;
-    color: white;
+  .ngx-pagination a:hover, .ngx-pagination button:hover {
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
   }
-
+  ul.ngx-pagination.responsive.ng-star-inserted {
+    padding-inline-start: 0px;
+    font-size: 20px;
+  }
   .mat-dialog-container{
     font-size: 2em;
-    
-  }
-
-  @media (min-width: 400px) {
-    .seletor {
-      font-size: 0.5em;
-    }
   }
 }
 // Configurações ao mudar para alto contraste no dialog
@@ -72,6 +76,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border: 2px solid #FFFF00;
     border-radius: 10px;
   } 
+
+  pagination-controls{
+    ul {
+      list-style: none;
+    }
+  }
+  
+  .pagination>.active>a{
+    background-color:blue;
+    border-radius: 20px;
+  }
 }
 
     

@@ -17,6 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HeaderComponent } from './header/header.component';
 import { BuscarFilmeComponent } from './buscar-filme/buscar-filme.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     DetalhesFilmeComponent,
     SeletorGeneroComponent,
     HeaderComponent,
-    BuscarFilmeComponent
+    BuscarFilmeComponent,
+    SpinnerComponent
   ],
   entryComponents: [
     DetalhesFilmeComponent

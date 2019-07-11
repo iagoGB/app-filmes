@@ -3,6 +3,7 @@ import { GeneroService } from '../services/genero/genero.service';
 import { Genre } from '../models/genre.model';
 import { Movie } from '../models/movie.model';
 import { GenreResult } from '../models/result.model';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'seletor-genero',
@@ -21,7 +22,8 @@ export class SeletorGeneroComponent implements OnInit {
   @Output() private changeGener = new EventEmitter();
 
   constructor(
-    private generoService: GeneroService
+    private generoService: GeneroService,
+    private liveAnnouncer: LiveAnnouncer
   ) { }
 
   ngOnInit() {

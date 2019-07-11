@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="toolbar-background" [class.change-font]="changeFont">
+<mat-toolbar color="primary" class="toolbar-background" [class.change-font]="changeFont" role="heading">
     <span>Listagem de Filmes</span>
     <span class="space"></span>
     <div fxShow="true" fxHide.xs>
@@ -7,28 +7,28 @@
         <i class="material-icons">brightness_4</i>
       </button>
       <button mat-raised-button (click)="notifyFont(true);" aria-label="Aumentar fonte">
-        <i class="material-icons">text_fields</i>
+        <i class="material-icons material-icons-i">A+</i>
       </button>
       <button mat-raised-button (click)="notifyFont(false);" aria-label="Reduzir fonte">
-        <i class="material-icons">format_size</i>
+        <i class="material-icons material-icons-i">A-</i>
       </button>
     </div>
     <!--Botão aparecerá ao atingir tamanho menor de tela -->
-    <button mat-mini-fab [matMenuTriggerFor]="menu" class="fixed" fxShow="true" fxHide.gt-xs>
-      <i class="material-icons">settings</i>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" class="fixed" fxShow="true" fxHide.gt-xs role="button" aria-label="Configurações Menu" tabindex="0">
+      <i class="material-icons" aria-labelledby="Configurações Menu">settings</i>
     </button>
     <!-- Menu responsivo -->
     <mat-menu #menu="matMenu" overlapTrigger="true" color="primary">
-      <button mat-menu-item (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste">
+      <button mat-menu-item (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste botão">
         <i class="material-icons">brightness_4</i>
         Mudar constraste
       </button>
-      <button mat-menu-item (click)="notifyFont(true);" aria-label="Aumentar fonte">
-        <i class="material-icons">text_fields</i>
+      <button mat-menu-item (click)="notifyFont(true);" aria-label="Aumentar fonte botão">
+        <i class="material-icons material-icons-i">A+</i>
         Aumentar Fonte
       </button>
-      <button mat-menu-item (click)="notifyFont(false);" aria-label="Reduzir fonte">
-        <i class="material-icons">format_size</i>
+      <button mat-menu-item (click)="notifyFont(false);" aria-label="Reduzir fonte botão">
+        <i class="material-icons material-icons-i">A-</i>
         Reduzir Fonte
       </button>
     </mat-menu>

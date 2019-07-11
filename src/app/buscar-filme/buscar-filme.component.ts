@@ -3,6 +3,7 @@ import { Movie } from './../models/movie.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { HttpService } from './../services/filme/http.service';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'buscar-filme',
@@ -21,7 +22,8 @@ export class BuscarFilmeComponent implements OnInit {
   @Output() private changeFind = new EventEmitter();
 
   constructor( 
-   private http: HttpService
+   private http: HttpService,
+   private liveAnnouncer: LiveAnnouncer
   ) { }
 
   ngOnInit(){
@@ -43,5 +45,10 @@ export class BuscarFilmeComponent implements OnInit {
      }
     ), 
     erro => { console.log(erro); }
+  }
+
+  announce(){
+    this.liveAnnouncer.announce("Botão pressionado. Gerando nova lista");
+    console.log("Estou anunciando");
   }
 }

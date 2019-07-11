@@ -1,6 +1,6 @@
 <mat-form-field>
     <mat-label>Seleciona a categoria</mat-label>
-    <mat-select [(value)]="choosed" (valueChange)="changeChoosed($event)" panelClass="teste"  aria-placeholder="Procurar por...">
+    <mat-select [(value)]="choosed" (valueChange)="changeChoosed($event)" panelClass="teste"   aria-placeholder="Procurar filme por gênero">
         <div *ngFor="let g of genres">
           <mat-option  value="{{ g.id }}">
               {{g.name}}

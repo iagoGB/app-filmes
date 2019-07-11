@@ -6,27 +6,26 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  private changeFont: boolean = false;
   @Output()  private sendChangeTheme = new EventEmitter();
-  @Output() private sendChangeFont = new EventEmitter()
-  constructor(
+  @Output() private sendChangeFont = new EventEmitter();
 
-  ) {}
-  
-  private changeFont:boolean = false;
+  constructor(
+  ) {}  
 
   ngOnInit() {
   }
-
-  notifyTheme():void {
+  
+  notifyTheme(): void {
     this.sendChangeTheme.emit();
   }
-  notifyFont(value:boolean):void{
+
+  notifyFont(value: boolean): void {
     this.sendChangeFont.emit(value);
     this.changeFontSize(value);
   }
 
-  changeFontSize(value:boolean):void{
+  changeFontSize(value: boolean): void {
     this.changeFont = value;
   }
 }

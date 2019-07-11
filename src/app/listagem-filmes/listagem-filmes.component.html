@@ -15,7 +15,7 @@
     <!-- LISTAGEM DOS FILMES -->
     <div *ngIf="movies; else loading">
         <mat-grid-list [cols]="larguraAtual" rowHeight="300px" color="warn" fxLayoutalign="center">
-            <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : genreResult.page, totalItems: 1000 }" >
+            <mat-grid-tile *ngFor= "let m of movies | paginate: { itemsPerPage: 20, currentPage : result.page, totalItems: 1000 }" >
                 <mat-card class="larguraFixa" (click)="openDialog(m.id);">
                     <img mat-card-lg-image src="{{base_image_url+image_size+m.poster_path}}" alt="Pôster do filme {{m.original_title}}"/>
                     <mat-card-title  class="mat-h5" [class.change-font]="changeFont">{{m.original_title}}</mat-card-title>
@@ -24,7 +24,7 @@
             </mat-grid-tile>
         </mat-grid-list>
         <!-- PAGINAÇÃO -->
-        <div *ngIf="genreResult.total_pages" fxLayout="row" fxLayoutAlign="center">
+        <div *ngIf="result.total_pages" fxLayout="row" fxLayoutAlign="center">
             <pagination-controls class="seletor" [class.change-font]="changeFont"
                 (pageChange)="page = $event; nextPage();"
                 responsive="true"

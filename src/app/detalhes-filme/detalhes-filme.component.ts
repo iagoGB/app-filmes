@@ -1,18 +1,19 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Movie } from '../models/movie.model';
 import { HttpService } from '../services/filme/http.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-detalhes-filme',
   templateUrl: './detalhes-filme.component.html',
   styleUrls: ['./detalhes-filme.component.scss']
 })
-export class DetalhesFilmeComponent implements OnInit {
+export class DetalhesFilmeComponent implements OnInit, OnDestroy {
   private movieDetail: Movie;
-  private image_size: string;
-  
+  private imageSize: string;
+  private movieSub: Subscription;
+
   constructor(
     private movieService: HttpService,
     public dialogRef: MatDialogRef<DetalhesFilmeComponent>,
@@ -25,17 +26,17 @@ export class DetalhesFilmeComponent implements OnInit {
 
   ngOnInit() {
     this.getDetail(this.data.id);
-    this.image_size = this.data.size;
+    this.imageSize = this.data.size;
+  }
+
+  ngOnDestroy() {
+    this.movieSub.unsubscribe();
   }
 
   getDetail( movieId: number ): void {
-    this.movieService.getById(movieId).subscribe(
-      dado => {
-        this.movieDetail = dado;
-      },
-      erro =>{
-        console.log(erro);
-      }
+    this.movieSub = this.movieService.getById(movieId).subscribe(
+      movie => { this.movieDetail = movie; },
+      erro => { console.log(erro); }
     );
   }
 }

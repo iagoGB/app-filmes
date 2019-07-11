@@ -12,17 +12,16 @@ export class IntroComponent implements OnInit {
   private title = 'aplicativo de filmes';
   private button: string = "consultar";  
   constructor(
-    private liveAnnouncer:LiveAnnouncer,
+    private liveAnnouncer: LiveAnnouncer,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.liveAnnouncer.announce("Bem vindo ao Aplicativo de filmes!");
-    setTimeout(()=>{ this.nextPage()},4000);
-    
+    setTimeout(() => { this.nextPage(); }, 4000);    
   }
 
-  nextPage(){  
+  nextPage() {  
     this.router.navigate(['/home']);
   }
 }

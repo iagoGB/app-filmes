@@ -14,3 +14,4 @@ export interface Movie {
     "overview": string;
     "release_date": Date;
 }
+

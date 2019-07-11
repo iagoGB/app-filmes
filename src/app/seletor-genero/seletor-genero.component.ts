@@ -2,8 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { GeneroService } from '../services/genero/genero.service';
 import { Genre } from '../models/genre.model';
 import { Movie } from '../models/movie.model';
-import { GenreResult } from '../models/result.model';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Result } from '../models/result.model';
 
 @Component({
   selector: 'seletor-genero',
@@ -11,54 +10,48 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./seletor-genero.component.scss']
 })
 export class SeletorGeneroComponent implements OnInit {
+  private choosed: number;
   private genres: Genre[];
-  private genreResult: GenreResult = {
+  private result: Result = {
     total_pages: 0,
     total_results: 0,
     page: 0,
     results: null
-  }
-  private choosed: number;
+  };
   @Output() private changeGener = new EventEmitter();
 
   constructor(
-    private generoService: GeneroService,
-    private liveAnnouncer: LiveAnnouncer
+    private generoService: GeneroService
   ) { }
 
   ngOnInit() {
     this.getGeners();
   }
-
- 
   // Mudar para o genero escolhido
-  changeChoosed(value:number):void{
+  changeChoosed(value: number): void {
     this.choosed = value; 
-    this.getGenreById(this.choosed);
-    
+    this.getGenreById(this.choosed);    
   }
   // Notifica a mudança para o componente pai 
-  notifyChange(){
-    this.changeGener.emit({choosed: this.choosed, genreResult: this.genreResult});
+  notifyChange() {
+    this.changeGener.emit({choosed: this.choosed, genreResult: this.result});
     console.log(` \n notifychange(): Escolhido: ${this.choosed}`);
   }
   // Método para solicitar consulta dos filmes por gênero
-  getGenreById(value:number):void{
+  getGenreById(value: number): void {
     this.generoService.loadGenreById(value).subscribe( 
-      dados =>{
-        this.genreResult.total_pages = dados.total_pages;
-        this.genreResult.total_results = dados.total_results;
-        this.genreResult.page = dados.page;
+      dados =>
+      {
+        this.result.total_pages = dados.total_pages;
+        this.result.total_results = dados.total_results;
+        this.result.page = dados.page;
         this.notifyChange();
       },
-      erro =>{ 
-        console.log(erro);
-      }
+      erro => { console.log(erro); }
     );
   }
   // Método para solicitar todos os gêneros disponíveis
-  getGeners():void {
-    this.generoService.loadGenres().subscribe ( dados => this.genres = dados.genres );
+  getGeners(): void {
+    this.generoService.loadGenres().subscribe( dados => this.genres = dados.genres );
   }
-
 }

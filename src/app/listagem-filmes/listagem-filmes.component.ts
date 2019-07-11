@@ -21,6 +21,8 @@ export class ListagemFilmesComponent implements OnInit {
   private larguraAtual:number = 4;
   private page:number = 1;
   private generChoosed: number = 16;
+  private paginationPrevious:string = "";
+  private paginationNext:string = ""; 
   private movies: Movie[];
   private genreResult: GenreResult = {
     results : null,
@@ -53,9 +55,13 @@ export class ListagemFilmesComponent implements OnInit {
       if (result.matches) {
         this.larguraAtual = 1;
         this.image_size ="w185";
+        this.paginationPrevious="";
+        this.paginationNext="";
       } else {
         this.larguraAtual = 2;
         this.image_size = "w300";
+        this.paginationPrevious="Anterior";
+        this.paginationNext="Próximo";
       }
     });
   }

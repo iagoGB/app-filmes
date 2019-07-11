@@ -4,13 +4,30 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.seletor[_ngcontent-kkh-c1] {
+  margin-bottom: 20px;
+}
+ul.ngx-pagination.responsive.ng-star-inserted {
+  margin: 0px;
+  padding: 10px;
+}
+
+
+
 @import '~@angular/material/theming';
 @include mat-core();
+
+
+
 
 // Tema com alto contraste
 .high-contrast-theme {
   color: $light-primary-text;
   background-color: black;
+  padding-bottom:20px;
+
+ 
+
   .seletor {
     background-color: #FFFF00;
     border-radius: 10px;
@@ -39,7 +56,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .change-font{
 
   .ngx-pagination {
-    font-size: 20px;
+    font-size: 30px;
   }
   .seletor{
     font-size: 0.8em;
@@ -52,9 +69,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .ngx-pagination a:hover, .ngx-pagination button:hover {
     background: none;
-    border: 2px solid black;
     border-radius: 10px;
   }
+  
   ul.ngx-pagination.responsive.ng-star-inserted {
     padding-inline-start: 0px;
     font-size: 20px;
@@ -62,6 +79,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-dialog-container{
     font-size: 2em;
   }
+
+  .ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
+    content: ">>";
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+
+  .ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
+    content: "<<";
+    display: inline-block;
+    margin-right: 0.5rem;
+  } 
 }
 // Configurações ao mudar para alto contraste no dialog
 .dialog-contrast {
@@ -87,6 +116,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color:blue;
     border-radius: 20px;
   }
+
+  .ngx-pagination {
+    margin-left: 0;
+    list-style: none;
+    margin: 10px;
+    padding: 5px;
+  } 
 }
 
     

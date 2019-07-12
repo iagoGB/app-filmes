@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class IntroComponent implements OnInit {
   private title = 'aplicativo de filmes';
   private button: string = "consultar";  
+  private time: number = 3000;
   constructor(
     private liveAnnouncer: LiveAnnouncer,
     private router: Router
@@ -18,7 +19,7 @@ export class IntroComponent implements OnInit {
 
   ngOnInit() {
     this.liveAnnouncer.announce("Bem vindo ao Aplicativo de filmes!");
-    setTimeout(() => { this.nextPage(); }, 4000);    
+    setTimeout(() => { this.nextPage(); }, this.time);    
   }
 
   nextPage() {  

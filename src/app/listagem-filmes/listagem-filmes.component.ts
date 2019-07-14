@@ -21,6 +21,7 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
   private larguraAtual: number = 4;
   private page: number = 1;
   private generChoosed: number = 16;
+  private fontSize: number = 16;
   private paginationPrevious: string = "";
   private paginationNext: string = ""; 
   private movies: Movie[];
@@ -101,7 +102,7 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
     }
     const dialogRef = this.dialog.open( DetalhesFilmeComponent, {
       width: '600px',
-      data: { id: movieId, size: this.image_size },
+      data: { id: movieId, size: this.image_size, fontSize : this.fontSize },
       panelClass: classe
     });
     dialogRef.afterClosed().subscribe ( action =>
@@ -124,7 +125,9 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
     this.highContrastTheme = !this.highContrastTheme;
   }
 
-  changeFontSize(value: boolean): void {
-    this.changeFont = value;
+  changeFontSize( value ): void {
+    //this.changeFont = value.value;
+    this.fontSize = value.fontSize;
+    console.log("Chegou novo tamanho de fonte" + this.fontSize);
   }
 }

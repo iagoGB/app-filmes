@@ -1,4 +1,7 @@
-<div *ngIf="movieDetail" color="accent">
+<div *ngIf="movieDetail" color="accent"  [ngStyle]="{ 
+        'fontSize' : fontSize + 2 + 'px' 
+    }"
+>
     <h1 mat-dialog-title>{{movieDetail.title}}</h1>
     <div mat-dialog-content class="black">
         <div mat-grid-list>

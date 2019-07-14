@@ -1,35 +1,55 @@
-<mat-toolbar color="primary" class="toolbar-background" [class.change-font]="changeFont" role="heading">
-    <span>Listagem de Filmes</span>
-    <span class="space"></span>
-    <div fxShow="true" fxHide.xs>
-      <!-- Os botões desaparecerão em tamanho menor de tela -->
-      <button mat-raised-button (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste">
-        <i class="material-icons">brightness_4</i>
-      </button>
-      <button mat-raised-button (click)="notifyFont(true);" aria-label="Aumentar fonte">
-        <i class="material-icons material-icons-i">A+</i>
-      </button>
-      <button mat-raised-button (click)="notifyFont(false);" aria-label="Reduzir fonte">
-        <i class="material-icons material-icons-i">A-</i>
-      </button>
-    </div>
-    <!--Botão aparecerá ao atingir tamanho menor de tela -->
-    <button mat-mini-fab [matMenuTriggerFor]="menu" class="fixed" fxShow="true" fxHide.gt-xs role="button" aria-label="Configurações Menu" tabindex="0">
-      <i class="material-icons" aria-labelledby="Configurações Menu">settings</i>
+<mat-toolbar color="primary" class="toolbar-background" [class.change-font]="changeFont" role="heading"
+  [ngStyle]="{ 
+    'fontSize' : selectedSize  + 'px'
+  }"
+>
+  <span>Listagem de Filmes</span>
+  <span class="space"></span>
+  <div fxShow="true" fxHide.xs>
+    <!-- Os botões desaparecerão em tamanho menor de tela -->
+    <button mat-raised-button (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste">
+      <i class="material-icons">brightness_4</i>
     </button>
-    <!-- Menu responsivo -->
-    <mat-menu #menu="matMenu" overlapTrigger="true" color="primary">
-      <button mat-menu-item (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste botão">
-        <i class="material-icons">brightness_4</i>
-        Mudar constraste
-      </button>
-      <button mat-menu-item (click)="notifyFont(true);" aria-label="Aumentar fonte botão">
-        <i class="material-icons material-icons-i">A+</i>
-        Aumentar Fonte
-      </button>
-      <button mat-menu-item (click)="notifyFont(false);" aria-label="Reduzir fonte botão">
-        <i class="material-icons material-icons-i">A-</i>
-        Reduzir Fonte
-      </button>
-    </mat-menu>
+    <button mat-raised-button (click)="increaseFont(); notifyFont();" aria-label="Aumentar fonte">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 16px">add</i></sup>
+
+    </button>
+    <button mat-raised-button (click)="decreaseFont(); notifyFont();" aria-label="Reduzir fonte">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 20px;"><sup>minimize</sup></i></sup>
+    </button>
+    <button mat-raised-button (click)="redefineFont(); notifyFont();" aria-label="Redefinir fonte">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 16px">settings_backup_restore</i></sup>
+    </button>
+
+  </div>
+  <!--Botão aparecerá ao atingir tamanho menor de tela -->
+  <button mat-mini-fab [matMenuTriggerFor]="menu" class="fixed" fxShow="true" fxHide.gt-xs role="button"
+    aria-label="Configurações Menu" tabindex="0">
+    <i class="material-icons" aria-labelledby="Configurações Menu">settings</i>
+  </button>
+  <!-- Menu responsivo -->
+  <mat-menu #menu="matMenu" overlapTrigger="true" color="primary">
+    <button mat-menu-item (click)="notifyTheme();" role="button" aria-label="Mudar alto contraste botão">
+      <i class="material-icons">brightness_4</i>
+      Mudar constraste
+    </button>
+    <button mat-menu-item (click)="increaseFont(); notifyFont();" aria-label="Aumentar fonte botão">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 16px">add</i></sup>
+      Aumentar Fonte
+    </button>
+    <button mat-menu-item (click)="decreaseFont(); notifyFont();" aria-label="Reduzir fonte botão">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 20px;"><sup>minimize</sup></i></sup>
+      Reduzir Fonte
+    </button>
+    <button mat-menu-item (click)="redefineFont(); notifyFont();" aria-label="Redefinir fonte botão">
+      <i class="material-icons material-icons-i">A</i>
+      <sup><i class="material-icons material-icons-i" style="font-size: 16px;">settings_backup_restore</i></sup>
+      Redefinir Fonte
+    </button>
+  </mat-menu>
 </mat-toolbar>

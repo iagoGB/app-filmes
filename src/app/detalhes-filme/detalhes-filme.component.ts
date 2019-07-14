@@ -10,9 +10,10 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./detalhes-filme.component.scss']
 })
 export class DetalhesFilmeComponent implements OnInit, OnDestroy {
+  private movieSub: Subscription;
   private movieDetail: Movie;
   private imageSize: string;
-  private movieSub: Subscription;
+  private fontSize:number = 16;
 
   constructor(
     private movieService: HttpService,
@@ -27,6 +28,7 @@ export class DetalhesFilmeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getDetail(this.data.id);
     this.imageSize = this.data.size;
+    this.fontSize = this.data.fontSize;
   }
 
   ngOnDestroy() {

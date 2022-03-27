@@ -38,7 +38,7 @@ export class DetalhesFilmeComponent implements OnInit, OnDestroy {
   getDetail( movieId: number ): void {
     this.movieSub = this.movieService.getById(movieId).subscribe(
       movie => { this.movieDetail = movie; },
-      erro => { console.log(erro); }
+      erro => {  }
     );
   }
 }

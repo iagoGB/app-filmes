@@ -45,7 +45,7 @@ export class BuscarFilmeComponent implements OnInit {
         this.notifyChange();
       }
     ), 
-    erro => { console.log(erro); };
+    erro => { };
   }
   // Feedback para leitor de tela
   announce() {

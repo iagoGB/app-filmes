@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, HostListener } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpService } from '../services/filme/http.service';
 import { MatDialog } from '@angular/material';
@@ -41,8 +41,28 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.consultarFilmes();
-    this.watchScreen();
+    this.onResize();
     this.liveAnnouncer.announce("Escolha o filme desejado!");
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    const currentWidth = window.innerWidth;
+    if(currentWidth >=1200) {
+      this.larguraAtual = 4;
+      this.image_size = "w300";
+      this.paginationPrevious = "Anterior";
+      this.paginationNext = "Próximo";
+    } else if (currentWidth >= 992) {
+      this.larguraAtual = 3;
+    } else if (currentWidth >=576) {
+      this.larguraAtual = 2;
+    } else {
+      this.larguraAtual = 1;
+      this.image_size = "w185";
+      this.paginationPrevious ="";
+      this.paginationNext = "";
+    }
   }
 
   ngOnDestroy() {
@@ -50,21 +70,26 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
 
   // Método para verificar tamanho da tela
   watchScreen(): void {
-    this.breakpointObserver.observe([
-      Breakpoints.XSmall,
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.larguraAtual = 1;
-        this.image_size = "w185";
-        this.paginationPrevious ="";
-        this.paginationNext = "";
-      } else {
-        this.larguraAtual = 2;
-        this.image_size = "w300";
-        this.paginationPrevious = "Anterior";
-        this.paginationNext = "Próximo";
-      }
-    });
+    // this.breakpointObserver.observe([
+    //   Breakpoints.XSmall,
+    // ]).subscribe(result => {
+    //   if (result.matches) {
+    //     this.larguraAtual = 1;
+    //     this.image_size = "w185";
+    //     this.paginationPrevious ="";
+    //     this.paginationNext = "";
+    //   } else {
+    //     this.larguraAtual = 3;
+    //     this.image_size = "w300";
+    //     this.paginationPrevious = "Anterior";
+    //     this.paginationNext = "Próximo";
+    //   }
+    // });
+    // this.breakpointObserver.observe([
+    //   Breakpoints.Small,
+    // ]).subscribe(result => {
+    //   if (result.matches) this.larguraAtual = 2;
+    // });
   }
   // Consultar filmes mais bem votados - Carregamento inicial
   consultarFilmes() {
@@ -75,9 +100,8 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
         this.result.total_results = dados.total_results;
         this.result.page = dados.page;
         this.movies = dados.results;
-        console.log("Variável movie:" + this.movies);
       },
-      erro =>  { console.log ("ERRO:"+erro); }
+      erro =>  {}
     );
   }
   // Método para avançar, retroceder ou atualizar para pagina desejada
@@ -91,7 +115,7 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
         this.result.page = dados.page;
         this.movies = dados.results;
       }, 
-      erro => { console.log(erro); }
+      erro => {}
     );
   }
   // Método para abrir pop-up com detalhes do filme
@@ -105,9 +129,6 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
       data: { id: movieId, size: this.image_size, fontSize : this.fontSize },
       panelClass: classe
     });
-    dialogRef.afterClosed().subscribe ( action =>
-      console.log("Fechou")
-    )
   }
   // Método para mudar os filmes que serão listados, recebendo o id de genero escolhido no seletor-genero componente
   changeGener(evento): void {
@@ -128,6 +149,5 @@ export class ListagemFilmesComponent implements OnInit,OnDestroy {
   changeFontSize( value ): void {
     //this.changeFont = value.value;
     this.fontSize = value.fontSize;
-    console.log("Chegou novo tamanho de fonte" + this.fontSize);
   }
 }

@@ -35,7 +35,6 @@ export class SeletorGeneroComponent implements OnInit {
   // Notifica a mudança para o componente pai 
   notifyChange() {
     this.changeGener.emit({choosed: this.choosed, genreResult: this.result});
-    console.log(` \n notifychange(): Escolhido: ${this.choosed}`);
   }
   // Método para solicitar consulta dos filmes por gênero
   getGenreById(value: number): void {
@@ -47,7 +46,7 @@ export class SeletorGeneroComponent implements OnInit {
         this.result.page = dados.page;
         this.notifyChange();
       },
-      erro => { console.log(erro); }
+      erro => {}
     );
   }
   // Método para solicitar todos os gêneros disponíveis

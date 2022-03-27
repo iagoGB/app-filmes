@@ -34,25 +34,20 @@ export class HeaderComponent implements OnInit {
 
   increaseFont(): void {
     if (this.n+1 > 4){
-      console.log("continuou o mesmo tamanho de  fonte");
       return;
     }
     this.n++;
     this.selectedSize = this.fontSizes[this.n];
-    console.log("aumentou fonte");
   }
   decreaseFont(): void {
     if (this.n-1 < 0){
-      console.log("continuou o mesmo tamanho de  fonte");
       return;
     }
     this.n--;
     this.selectedSize = this.fontSizes[this.n];
-    console.log("diminuiu fonte");
   }
   redefineFont(): void {
     this.n = 0;
     this.selectedSize = this.fontSizes[this.n];
-    console.log("Fonte tamanho padrão!");
   }
 }

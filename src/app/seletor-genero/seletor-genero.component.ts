@@ -10,9 +10,9 @@ import { Result } from '../models/result.model';
   styleUrls: ['./seletor-genero.component.scss']
 })
 export class SeletorGeneroComponent implements OnInit {
-  private choosed: number;
-  private genres: Genre[];
-  private result: Result = {
+  choosed: number;
+  genres: Genre[];
+  result: Result = {
     total_pages: 0,
     total_results: 0,
     page: 0,

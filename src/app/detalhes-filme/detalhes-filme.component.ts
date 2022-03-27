@@ -10,10 +10,10 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./detalhes-filme.component.scss']
 })
 export class DetalhesFilmeComponent implements OnInit, OnDestroy {
-  private movieSub: Subscription;
-  private movieDetail: Movie;
-  private imageSize: string;
-  private fontSize:number = 16;
+  movieSub: Subscription;
+  movieDetail: Movie;
+  imageSize: string;
+  fontSize:number = 16;
 
   constructor(
     private movieService: HttpService,

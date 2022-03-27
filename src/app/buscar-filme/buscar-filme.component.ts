@@ -11,15 +11,15 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./buscar-filme.component.scss']
 })
 export class BuscarFilmeComponent implements OnInit {
-  private keyword: string;
-  private finded: Movie[];
-  private result: Result = {
+  keyword: string;
+  finded: Movie[];
+  result: Result = {
     results : null,
     total_pages : null,
     total_results : null,
     page : null
   };
-  @Output() private changeFind = new EventEmitter();
+  @Output() changeFind = new EventEmitter();
 
   constructor( 
    private http: HttpService,

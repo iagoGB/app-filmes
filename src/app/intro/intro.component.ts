@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./intro.component.scss']
 })
 export class IntroComponent implements OnInit {
-  private title = 'aplicativo de filmes';
-  private button: string = "consultar";  
-  private time: number = 3000;
+  title = 'aplicativo de filmes';
+  button: string = "consultar";  
+  time: number = 3000;
   constructor(
     private liveAnnouncer: LiveAnnouncer,
     private router: Router

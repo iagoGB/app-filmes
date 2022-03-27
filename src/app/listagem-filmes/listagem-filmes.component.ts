@@ -14,18 +14,18 @@ import { Result } from '../models/result.model';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit,OnDestroy {
-  private base_image_url: string = "https://image.tmdb.org/t/p/";
-  private image_size: string = "w500";
-  public changeFont: boolean = false;
-  private highContrastTheme: boolean = false;
-  private larguraAtual: number = 4;
-  private page: number = 1;
-  private generChoosed: number = 16;
-  private fontSize: number = 16;
-  private paginationPrevious: string = "";
-  private paginationNext: string = ""; 
-  private movies: Movie[];
-  private result: Result = {
+  base_image_url: string = "https://image.tmdb.org/t/p/";
+  image_size: string = "w500";
+  hangeFont: boolean = false;
+  highContrastTheme: boolean = false;
+  larguraAtual: number = 4;
+  page: number = 1;
+  generChoosed: number = 16;
+  fontSize: number = 16;
+  paginationPrevious: string = "";
+  paginationNext: string = ""; 
+  movies: Movie[];
+  result: Result = {
     results : null,
     total_pages : null,
     total_results : null,

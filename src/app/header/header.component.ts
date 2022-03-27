@@ -6,10 +6,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  private changeFont: boolean = false;
-  private fontSizes: number[] = [16,18,22,25,29];
-  private n: number = 0;
-  private selectedSize:number = this.fontSizes[this.n];
+  changeFont: boolean = false;
+  fontSizes: number[] = [16,18,22,25,29];
+  n: number = 0;
+  selectedSize:number = this.fontSizes[this.n];
   @Output()  private sendChangeTheme = new EventEmitter();
   @Output() private sendChangeFont = new EventEmitter();
 
